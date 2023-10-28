@@ -8,8 +8,8 @@ resource "aws_db_instance" "database" {
   engine               = "postgres"
   engine_version       = "14"
   instance_class       = "db.t3.micro"
-  username             = "change-it"
-  password             = "change-it"
+  username             = "changeit"
+  password             = "changeit"
   skip_final_snapshot  = true
   allow_major_version_upgrade = true
 }
