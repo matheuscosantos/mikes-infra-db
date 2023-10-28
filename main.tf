@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_db_instance" "database" {
   allocated_storage    = 20
-  db_name              = "mikes-db"
+  db_name              = "mikesdb"
   engine               = "postgres"
   engine_version       = "14"
   instance_class       = "db.t3.micro"
