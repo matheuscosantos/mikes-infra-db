@@ -7,7 +7,7 @@ resource "aws_db_instance" "database" {
   db_name              = "mikes-db"
   engine               = "postgres"
   engine_version       = "14"
-  instance_class       = "db.t2.micro"
+  instance_class       = "db.t3.micro"
   username             = "change-it"
   password             = "change-it"
   skip_final_snapshot  = true
