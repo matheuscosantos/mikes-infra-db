@@ -4,12 +4,12 @@ provider "aws" {
 
 resource "aws_db_instance" "database" {
   allocated_storage    = 20
+  db_name              = "mikes-db"
   engine               = "postgres"
   engine_version       = "11.6"
   instance_class       = "db.t2.micro"
-  name                 = "mikes-db"
-  username             = ""
-  password             = ""
+  username             = "change-it"
+  password             = "change-it"
   parameter_group_name = "default.postgres11"
   skip_final_snapshot  = true
 }
