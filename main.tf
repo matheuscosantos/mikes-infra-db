@@ -2,52 +2,14 @@ provider "aws" {
   region = "us-east-2"
 }
 
-resource "aws_iam_policy" "secrets_manager_policy" {
-  name        = "secrets-manager-policy"
-  description = "Policy for AWS Secrets Manager"
-
-  policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "secretsmanager:GetRandomPassword",
-                "secretsmanager:GetResourcePolicy",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:ListSecretVersionIds"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-EOF
+resource "aws_ssm_parameter" "db_username" {
+  name  = "/mikes-app/db_username"
+  type  = "SecureString"
 }
 
-resource "aws_iam_role" "secrets_manager_role" {
-  name = "secrets-manager-role"
-
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "sts:AssumeRole",
-            "Principal": {
-                "Service": "rds.amazonaws.com"
-            },
-            "Effect": "Allow"
-        }
-    ]
-}
-EOF
-}
-
-resource "aws_iam_policy_attachment" "secrets_manager_attachment" {
-  policy_arn = aws_iam_policy.secrets_manager_policy.arn
-  roles      = [aws_iam_role.secrets_manager_role.name]
+resource "aws_ssm_parameter" "db_password" {
+  name  = "/mikes-app/db_password"
+  type  = "SecureString"
 }
 
 resource "aws_db_subnet_group" "db-subnet-group" {
@@ -78,16 +40,4 @@ resource "aws_security_group" "mikes" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # Aberto para o mundo; ajuste conforme necessário
   }
-}
-
-data "aws_secretsmanager_secret" "db_credentials" {
-  name = "db-credentials" # Substitua pelo nome do seu segredo no Secrets Manager
-}
-
-resource "aws_secretsmanager_secret_version" "db_credentials_version" {
-  secret_id     = data.aws_secretsmanager_secret.db_credentials.id
-  secret_string = jsonencode({
-    username = "change-it",
-    password = "change-it"
-  })
 }
