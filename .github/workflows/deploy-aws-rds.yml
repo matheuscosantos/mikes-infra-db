@@ -36,7 +36,3 @@ jobs:
     - name: Store RDS Endpoint as Environment Variable
       run: |
         echo "RDS_ENDPOINT=${{ steps.outputs.outputs }}" >> $GITHUB_ENV
-
-    - name: Cleanup
-      run: terraform destroy -auto-approve
-
