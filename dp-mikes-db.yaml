@@ -1,0 +1,68 @@
+---
+# Define a 'Service' To Expose postgres to Other Services
+apiVersion: v1
+kind: Service
+metadata:
+  name: mikes-db
+  labels:
+    app: mikes-db
+    tier: database
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: mikes-db
+    tier: database
+  clusterIP: None
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mikes-db
+  labels:
+    app: mikes-db
+    tier: database
+
+spec:
+  selector:
+    matchLabels:
+      app: mikes-db
+  template:
+    metadata:
+      labels:
+        app: mikes-db
+        tier: database
+    spec:
+      containers:
+        - name: mikes-db
+          image: gaprado/mikes-db:0.0.1
+          ports:
+            - containerPort: 5432
+              name: mikes-db
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: db_user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: db_password
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: db-conf
+                  key: db_host
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: db-conf
+                  key: db_port
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: db-conf
+                  key: db_name
