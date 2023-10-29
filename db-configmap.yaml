@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: db-conf
-data:
-  db_host: "mikes-db"
-  db_name: "mikes-db"
-  db_port: "5432"
