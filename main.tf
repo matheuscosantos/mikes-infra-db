@@ -19,7 +19,7 @@ data "aws_secretsmanager_secret_version" "db_credentials" {
 }
 
 resource "aws_secretsmanager_secret" "db_credentials" {
-  name = "mikes/db/db_credentials"
+  name = "db_credentials_v1"
   lifecycle {
     ignore_changes = all
   }

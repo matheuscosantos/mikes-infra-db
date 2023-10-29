@@ -26,6 +26,9 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
 
+    - name: Import secrets
+      run: terraform import aws_secretsmanager_secret.db_credentials mikes/db/db_credentials
+
     - name: Deploy RDS
       run: terraform apply -auto-approve
 
