@@ -26,6 +26,9 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
 
+    - name: Plan Terraform
+      run: terraform plan
+
     - name: Deploy RDS
       run: terraform apply -auto-approve
 
