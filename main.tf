@@ -3,6 +3,7 @@ provider "aws" {
 }
 
 resource "aws_db_instance" "database" {
+  identifier           = "mikes-db"
   allocated_storage    = 20
   db_name              = "mikesdb"
   engine               = "postgres"
