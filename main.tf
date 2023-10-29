@@ -20,6 +20,7 @@ resource "aws_db_instance" "database" {
   allow_major_version_upgrade   = true
   db_subnet_group_name          = aws_db_subnet_group.database.name
   apply_immediately             = true
+  vpc_security_group_ids        = ["sg-098c8756d60c43c2d"]
 }
 
 data "aws_secretsmanager_secret_version" "db_credentials" {
