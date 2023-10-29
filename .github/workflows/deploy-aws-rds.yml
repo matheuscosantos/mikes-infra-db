@@ -34,12 +34,14 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: us-east-2
 
-
     - name: Initialize Terraform
       run: terraform init
 
     - name: Deploy RDS
-      run: terraform apply -auto-approve
+      run: |
+        if [ "$SKIP_DEPLOY" != "true" ]; then
+          terraform apply -auto-approve
+        fi
 
     - name: Capture Outputs
       id: outputs
