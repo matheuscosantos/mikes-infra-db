@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_db_subnet_group" "database" {
   name       = "mikes-db-subnet-group"
-  subnet_ids = ["private-subnet-a", "private-subnet-b", "private-subnet-c"]
+  subnet_ids = ["subnet-02fade20759ea9048", "subnet-0476b7fa27309a259", "subnet-0476b7fa27309a259"]
 
   tags = {
     Name = "mikes-db-subnet-group"
