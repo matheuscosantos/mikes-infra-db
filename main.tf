@@ -15,12 +15,5 @@ resource "aws_db_instance" "database" {
 }
 
 data "aws_secretsmanager_secret_version" "db_credentials" {
-  secret_id = aws_secretsmanager_secret.db_credentials.id
-}
-
-resource "aws_secretsmanager_secret" "db_credentials" {
-  name = "db_credentials_v1"
-  lifecycle {
-    ignore_changes = all
-  }
+  secret_id = "arn:aws:secretsmanager:us-east-2:644237782704:secret:mikes/db/db_credentials-6wQzyQ"
 }
