@@ -25,9 +25,9 @@ jobs:
     
     - name: Check if the aws_db_instance already exists
       run: |
-        if aws rds describe-db-instances --db-instance-identifier mikes-db; then
+        if aws rds describe-db-instances --db-instance-identifier mikes-db > /dev/null 2>&1; then
           echo "O aws_db_instance já existe. Não é necessário criar um novo."
-          exit 0
+          echo "SKIP_DEPLOY=true" >> $GITHUB_ENV
         fi
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
