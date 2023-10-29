@@ -19,5 +19,5 @@ data "aws_secretsmanager_secret_version" "db_credentials" {
 }
 
 resource "aws_secretsmanager_secret" "db_credentials" {
-  name = "mikes/db_credentials"
+  name = "mikes/db/db_credentials"
 }
