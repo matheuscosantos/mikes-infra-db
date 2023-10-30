@@ -14,7 +14,7 @@ variable "states_bucket" {
 }
 
 variable "states_bucket_encrypt" {
-    type     = boolean
+    type     = bool
     default  = "true"
 }
 
@@ -38,7 +38,7 @@ variable "db_identifier" {
 }
 
 variable "db_allocated_storage" {
-    type = integer
+    type = number
     default = 20
 }
 
