@@ -32,17 +32,17 @@ variable "subnet_ids" {
   ]
 }
 
-variable = "db_identifier" {
+variable "db_identifier" {
     type = string
     default = "mikes-db"
 }
 
-variable = "db_allocated_storage" {
+variable "db_allocated_storage" {
     type = integer
     default = 20
 }
 
-variable = "db_name" {
+variable "db_name" {
     type = string
     default = "mikesdb"
 }
