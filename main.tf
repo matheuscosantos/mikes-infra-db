@@ -1,25 +1,25 @@
 provider "aws" {
-  region = "us-east-2"
+  region = var.region
 }
 
 terraform {
   backend "s3" {
-    bucket         = "mikes-terraform-state"
-    key            = "mikes-db.tfstate"
-    region         = "us-east-2"
-    encrypt        = true
+    bucket         = var.states_bucket
+    key            = var.states_file
+    region         = var.region
+    encrypt        = var.states_bucket_encrypt
   }
 }
 
 resource "aws_db_subnet_group" "database" {
-  name       = "mikes-db-subnet-group-v3"
-  subnet_ids = ["subnet-02fade20759ea9048", "subnet-0476b7fa27309a259", "subnet-0476b7fa27309a259"]
+  name       = var.aws_db_subnet_group_name
+  subnet_ids = var.subnet_ids
 }
 
 resource "aws_db_instance" "database" {
-  identifier                    = "mikes-db"
-  allocated_storage             = 20
-  db_name                       = "mikesdb"
+  identifier                    = var.db_identifier
+  allocated_storage             = var.db_allocated_storage
+  db_name                       = var.db_name
   engine                        = "postgres"
   engine_version                = "14"
   instance_class                = "db.t3.micro"
@@ -29,9 +29,9 @@ resource "aws_db_instance" "database" {
   allow_major_version_upgrade   = true
   db_subnet_group_name          = aws_db_subnet_group.database.name
   apply_immediately             = true
-  vpc_security_group_ids        = ["sg-0ec0a85cb71c0da95"]
+  vpc_security_group_ids        = var.vpc_security_group_ids
 }
 
 data "aws_secretsmanager_secret_version" "db_credentials" {
-  secret_id = "arn:aws:secretsmanager:us-east-2:644237782704:secret:mikes/db/db_credentials-6wQzyQ"
+  secret_id = var.db_credentials_arn
 }
