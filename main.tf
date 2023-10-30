@@ -2,8 +2,17 @@ provider "aws" {
   region = "us-east-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket         = "mikes-terraform-state"
+    key            = "mikes-db.tfstate"
+    region         = "us-east-2"
+    encrypt        = true
+  }
+}
+
 resource "aws_db_subnet_group" "database" {
-  name       = "mikes-db-subnet-group-v1"
+  name       = "mikes-db-subnet-group-v2"
   subnet_ids = ["subnet-02fade20759ea9048", "subnet-0476b7fa27309a259", "subnet-0476b7fa27309a259"]
 }
 
