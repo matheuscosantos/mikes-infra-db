@@ -2,15 +2,6 @@ provider "aws" {
   region = var.region
 }
 
-terraform {
-  backend "s3" {
-    bucket         = var.states_bucket
-    key            = var.states_file
-    region         = var.region
-    encrypt        = var.states_bucket_encrypt
-  }
-}
-
 resource "aws_db_subnet_group" "database" {
   name       = var.aws_db_subnet_group_name
   subnet_ids = var.subnet_ids
