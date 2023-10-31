@@ -3,21 +3,6 @@ variable "region" {
     default = "us-east-2"
 }
 
-variable "states_file" {
-    type    = string
-    default = "mikes-db.tfstate"
-}
-
-variable "states_bucket" {
-    type     = string
-    default  = "mikes-terraform-state"
-}
-
-variable "states_bucket_encrypt" {
-    type     = bool
-    default  = "true"
-}
-
 variable "aws_db_subnet_group_name" {
     type     = string
     default  = "mikes-db-subnet-group-v3"
