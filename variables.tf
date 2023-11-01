@@ -5,7 +5,7 @@ variable "region" {
 
 variable "aws_db_subnet_group_name" {
     type     = string
-    default  = "mikes-db-subnet-group-v3"
+    default  = "mikes-db-subnet-group-v4"
 }
 
 variable "subnet_ids" {
