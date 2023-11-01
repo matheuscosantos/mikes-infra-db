@@ -35,7 +35,7 @@ variable "db_name" {
 variable "vpc_security_group_ids" {
   type    = list(string)
   default = [
-    "sg-098c8756d60c43c2d",
+    "sg-0b54a118ef1d3a749",
   ]
 }
 variable "db_credentials_arn" {
