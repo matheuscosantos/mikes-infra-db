@@ -5,15 +5,15 @@ variable "region" {
 
 variable "aws_db_subnet_group_name" {
     type     = string
-    default  = "mikes-db-subnet-group-v3"
+    default  = "mikes-db-subnet-group-v4"
 }
 
 variable "subnet_ids" {
   type    = list(string)
   default = [
-    "subnet-02fade20759ea9048",
-    "subnet-0476b7fa27309a259",
-    "subnet-01da20e70684fdc33",
+    "subnet-0bf429bd21d7c0dfb",
+    "subnet-051f580c310c2bc67",
+    "subnet-0a912569f0ff495e6",
   ]
 }
 
@@ -43,3 +43,6 @@ variable "db_credentials_arn" {
     default = "arn:aws:secretsmanager:us-east-2:644237782704:secret:mikes/db/db_credentials-6wQzyQ"
 
 }
+
+
+
