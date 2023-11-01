@@ -11,7 +11,6 @@ variable "aws_db_subnet_group_name" {
 variable "subnet_ids" {
   type    = list(string)
   default = [
-    "vpc-07a016c33ec9050a8",
     "subnet-0bf429bd21d7c0dfb",
     "subnet-051f580c310c2bc67",
     "subnet-0a912569f0ff495e6",
