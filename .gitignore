@@ -3,3 +3,4 @@
 *.exe
 *.backup
 *.tfstate
+.idea
